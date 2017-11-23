@@ -1,0 +1,20 @@
+#!/bin/sh
+
+export STATIC_TESTS=0
+
+# we want to include RIOT's murdock build script.
+# But it would execute any parameters. Thus save the arguments for later and
+# empty the argument list.
+ARGS="$@"
+shift $#
+
+. RIOT/.murdock
+
+# get list of all app directories
+get_apps() {
+    find . \
+        -mindepth 2 -maxdepth 2 -name Makefile -type f | grep -v RIOT \
+        | xargs dirname | $(_greplist $APPS) | sort
+}
+
+$ARGS
