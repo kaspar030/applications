@@ -1,0 +1,3 @@
+[submodule "riot"]
+	path = RIOT
+	url = https://github.com/RIOT-OS/RIOT
